@@ -10,11 +10,11 @@
                 <form method="POST" action="/signup" class="mt-6">
                     @csrf
                     <div class="space-y-5">
-                        <x-input-field name="Username" type="text" placeholder="Enter unique username"
+                        <x-input-field name="username" type="text" placeholder="Enter unique username"
                             moreInfo="Username should be unique, min 3 symbols" />
-                        <x-input-field name="Email" type="email" placeholder="Enter your email" />
-                        <x-input-field name="Password" type="password" placeholder="Fill in password" />
-                        <x-input-field name="Repeat password" type="password" placeholder="Repeat password" />
+                        <x-input-field name="email" type="email" placeholder="Enter your email" />
+                        <x-input-field name="password" type="password" placeholder="Fill in password" />
+                        <x-input-field name="repeat_password" type="password" placeholder="Repeat password" />
                         <div class="mt-6">
                             <input type="checkbox" id="remember" name="remember">
                             <label for="remember" class="text-[#010414] text-sm">Remember this device</label>

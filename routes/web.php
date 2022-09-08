@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/signup', function () {
-	return view('auth.signup');
-});
+Route::view('/signup', 'auth.signup');
+
+Route::post('/signup', [AuthController::class, 'signup']);

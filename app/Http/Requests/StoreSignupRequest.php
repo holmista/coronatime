@@ -14,10 +14,10 @@ class StoreSignupRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'name'           => ['required', 'min:3', 'unique:users,name'],
-			'email'          => ['required', 'email', 'unique:users,email'],
-			'password'       => ['required', 'min:3'],
-			'repeat_password'=> ['same:password'],
+			'username'           => ['required', 'min:3', 'unique:users,username'],
+			'email'              => ['required', 'email', 'unique:users,email'],
+			'password'           => ['required', 'min:3'],
+			'repeat_password'    => ['same:password'],
 		];
 	}
 }

@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSignupRequest;
+use App\Models\User;
+
 class AuthController extends Controller
 {
-	public function signin()
+	public function signup(StoreSignupRequest $request)
 	{
-		dd('in controller');
+		$user = $request->only(['username', 'email', 'password']);
+		$user['password'] = bcrypt($user['password']);
+		// dd($user);
+		User::create($user);
 	}
 }
