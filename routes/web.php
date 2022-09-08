@@ -15,5 +15,6 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::view('/signup', 'auth.signup');
+Route::get('/email/verify', [AuthController::class, 'confirmationSent'])->name('verification.notice');
 
 Route::post('/signup', [AuthController::class, 'signup']);
