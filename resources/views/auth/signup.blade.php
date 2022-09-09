@@ -22,7 +22,7 @@
                         <x-auth-button text="SIGN UP" type="submit" />
                         <p class="text-[#808189] ">
                             Already have an account?
-                            <a href="/login" class="hover: cursor-pointer">
+                            <a href="/signin" class="hover: cursor-pointer">
                                 <strong class="text-[#010414]">Log in</strong>
                             </a>
                         </p>

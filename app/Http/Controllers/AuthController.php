@@ -31,6 +31,12 @@ class AuthController extends Controller
 		return redirect()->back()->withInput()->withErrors(['email'=>'invalid credentials']);
 	}
 
+	public function signout(): RedirectResponse
+	{
+		Auth::logout();
+		return redirect()->route('auth.view_signin');
+	}
+
 	public function verifyEmail(): RedirectResponse
 	{
 		dd('here');
