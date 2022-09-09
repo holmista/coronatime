@@ -4,26 +4,26 @@
             <div class="w-11/12">
                 <section>
                     <img src="/storage/logo.png" alt="">
-                    <h1 class="font-black text-[#010414] text-2xl mt-14">Welcome to Coronatime</h1>
-                    <h3 class="text-lg text-[#808189]">Please enter required info to sign up</h3>
+                    <h1 class="font-black text-[#010414] text-2xl mt-14">Welcome back</h1>
+                    <h3 class="text-lg text-[#808189]">Welcome back! Please enter your details</h3>
                 </section>
-                <form method="POST" action="/signup" class="mt-6">
+                <form method="POST" action="/signin" class="mt-6">
                     @csrf
                     <div class="space-y-5">
-                        <x-input-field name="username" type="text" placeholder="Enter unique username"
-                            moreInfo="Username should be unique, min 3 symbols" />
-                        <x-input-field name="email" type="email" placeholder="Enter your email" />
+                        <x-input-field name="username" type="text" placeholder="Enter unique username or email" />
                         <x-input-field name="password" type="password" placeholder="Fill in password" />
-                        <x-input-field name="repeat_password" type="password" placeholder="Repeat password" />
                         <div class="mt-6">
                             <input type="checkbox" id="remember" name="remember">
                             <label for="remember" class="text-[#010414] text-sm">Remember this device</label>
+                            <a href="#">
+                                <p class="text-[#2029F3] text-sm">Forgot password?</p>
+                            </a>
                         </div>
-                        <x-auth-button text="SIGN UP" type="submit" />
+                        <x-auth-button text="SIGN IN" type="submit" />
                         <p class="text-[#808189] ">
-                            Already have an account?
-                            <a href="/login" class="hover: cursor-pointer">
-                                <strong class="text-[#010414]">Log in</strong>
+                            Don't have and account?
+                            <a href="/signup" class="hover: cursor-pointer">
+                                <strong class="text-[#010414]">Sign up for free</strong>
                             </a>
                         </p>
                     </div>

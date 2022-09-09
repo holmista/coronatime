@@ -14,7 +14,16 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::view('/signup', 'auth.signup');
-Route::get('/email/verify', [AuthController::class, 'confirmationSent'])->name('verification.notice');
+Route::middleware(['guest'])->group(function () {
+	Route::view('/signup', 'auth.signup')->name('auth.view_signup');
+	Route::post('/signup', [AuthController::class, 'signup'])->name('auth.signup');
+	Route::view('/signin', 'auth.signin')->name('auth.view_signin');
+	Route::view('/account-confirmed', 'auth.account-confirmed')->name('auth.view_account_confirmed');
+	Route::view('/email/verify', 'auth.confirmation-sent')->name('verification.notice');
+	Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])->name('verification.verify');
+	Route::post('/signin', [AuthController::class, 'signin']);
+});
 
-Route::post('/signup', [AuthController::class, 'signup']);
+Route::middleware(['auth'])->group(function () {
+	Route::view('/', 'home')->name('home.index');
+});
