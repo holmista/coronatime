@@ -54,10 +54,15 @@ class AuthController extends Controller
 		}
 		$user->markEmailAsVerified();
 		event(new Verified($user));
-		if (request()->session->get('requested_verification'))
-		{
-			request()->session->forget('requested_verification');
-		}
 		return redirect()->route('auth.view_account_confirmed');
+	}
+
+	public function accountConfirmed()
+	{
+		if (request()->session()->get('requested_verification'))
+		{
+			request()->session()->forget('requested_verification');
+		}
+		return view('auth.account-confirmed');
 	}
 }

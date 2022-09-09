@@ -17,7 +17,7 @@ class RequestedVerification
 	 */
 	public function handle(Request $request, Closure $next)
 	{
-		if ($request->session->get('requested_verification'))
+		if ($request->session()->get('requested_verification') !== null)
 		{
 			return $next($request);
 		}

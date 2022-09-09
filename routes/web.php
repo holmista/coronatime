@@ -18,7 +18,7 @@ Route::middleware(['guest'])->group(function () {
 	Route::view('/signup', 'auth.signup')->name('auth.view_signup');
 	Route::post('/signup', [AuthController::class, 'signup'])->name('auth.signup');
 	Route::view('/signin', 'auth.signin')->name('auth.view_signin');
-	Route::view('/account-confirmed', 'auth.account-confirmed')->middleware('requestedVerification')->name('auth.view_account_confirmed');
+	Route::get('/account-confirmed', [AuthController::class, 'accountConfirmed'])->middleware('requestedVerification')->name('auth.view_account_confirmed');
 	Route::view('/email/verify', 'auth.confirmation-sent')->middleware('requestedVerification')->name('verification.notice');
 	Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])->name('verification.verify');
 	Route::post('/signin', [AuthController::class, 'signin']);
