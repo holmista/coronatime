@@ -18,6 +18,7 @@ class AuthController extends Controller
 		$attributes['password'] = bcrypt($attributes['password']);
 		$user = User::create($attributes);
 		event(new Registered($user));
+		$request->session()->put('requested_verification', true);
 		return redirect()->route('verification.notice');
 	}
 
@@ -39,7 +40,6 @@ class AuthController extends Controller
 
 	public function verifyEmail(): RedirectResponse
 	{
-		dd('here');
 		$user = User::findOrFail(request()->id);
 		if ($user->hasVerifiedEmail())
 		{
@@ -54,6 +54,10 @@ class AuthController extends Controller
 		}
 		$user->markEmailAsVerified();
 		event(new Verified($user));
+		if (request()->session->get('requested_verification'))
+		{
+			request()->session->forget('requested_verification');
+		}
 		return redirect()->route('auth.view_account_confirmed');
 	}
 }
