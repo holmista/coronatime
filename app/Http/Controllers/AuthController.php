@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
@@ -54,15 +55,25 @@ class AuthController extends Controller
 		}
 		$user->markEmailAsVerified();
 		event(new Verified($user));
+		request()->session()->put('requested_verification', true);
 		return redirect()->route('auth.view_account_confirmed');
 	}
 
-	public function accountConfirmed()
+	public function accountConfirmed(): View
 	{
 		if (request()->session()->get('requested_verification'))
 		{
 			request()->session()->forget('requested_verification');
 		}
 		return view('auth.account-confirmed');
+	}
+
+	public function emailSent(): View
+	{
+		if (request()->session()->get('requested_verification'))
+		{
+			request()->session()->forget('requested_verification');
+		}
+		return view('auth.confirmation-sent');
 	}
 }
