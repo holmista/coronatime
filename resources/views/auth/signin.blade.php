@@ -12,9 +12,11 @@
                     <div class="space-y-5">
                         <x-input-field name="username" type="text" placeholder="Enter unique username or email" />
                         <x-input-field name="password" type="password" placeholder="Fill in password" />
-                        <div class="mt-6">
-                            <input type="checkbox" id="remember" name="remember">
-                            <label for="remember" class="text-[#010414] text-sm">Remember this device</label>
+                        <div class="mt-6 flex justify-between">
+                            <div>
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember" class="text-[#010414] text-sm">Remember this device</label>
+                            </div>
                             <a href="#">
                                 <p class="text-[#2029F3] text-sm">Forgot password?</p>
                             </a>

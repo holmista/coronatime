@@ -21,6 +21,6 @@ class RequestedVerification
 		{
 			return $next($request);
 		}
-		return redirect()->route('home.index');
+		return redirect()->route('auth.signup');
 	}
 }

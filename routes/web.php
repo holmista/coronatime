@@ -24,9 +24,7 @@ Route::middleware(['guest'])->group(function () {
 	Route::post('/signin', [AuthController::class, 'signin']);
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 	Route::view('/', 'home')->name('home.index');
 	Route::get('/signout', [AuthController::class, 'signout']);
 });
-
-Route::view('/testemail', 'emails.verify-email');

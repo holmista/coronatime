@@ -26,10 +26,15 @@ class AuthController extends Controller
 
 	public function signin(StoreSigninRequest $request): RedirectResponse
 	{
+		if (User::find(['email'=>$request->username]) || User::find(['username'=>$request->username]))
+		{
+			$request->session()->put('requested_verification', true);
+			return redirect()->route('verification.notice');
+		}
 		$attributes = $request->validated();
 		if (Auth::attempt($attributes))
 		{
-			return redirect()->intended()->with('success', 'Welcome back!');
+			return redirect()->route('home.index')->with('success', 'Welcome back!');
 		}
 		return redirect()->back()->withInput()->withErrors(['email'=>'invalid credentials']);
 	}
