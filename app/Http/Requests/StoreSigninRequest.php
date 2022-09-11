@@ -16,6 +16,7 @@ class StoreSigninRequest extends FormRequest
 		return [
 			'username'  => ['required', 'min:3'],
 			'password'  => ['required', 'min:3'],
+			'remember'  => ['nullable'],
 		];
 	}
 }
