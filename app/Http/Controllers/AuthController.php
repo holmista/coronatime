@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSignupRequest;
 use App\Http\Requests\StoreSigninRequest;
-use Illuminate\Auth\Events\Registered;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Mail\VerifyEmail;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -18,7 +19,7 @@ class AuthController extends Controller
 		$attributes = $request->only(['username', 'email', 'password']);
 		$attributes['password'] = bcrypt($attributes['password']);
 		$user = User::create($attributes);
-		event(new Registered($user));
+		Mail::to($user)->queue(new VerifyEmail($user));
 		$request->session()->put('requested_verification', true);
 		return redirect()->route('verification.notice');
 	}

@@ -29,4 +29,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/signout', [AuthController::class, 'signout']);
 });
 
-Route::view('/testemail', 'emails.confirmation');
+Route::view('/testemail', 'emails.verify-email');
