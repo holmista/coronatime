@@ -85,4 +85,8 @@ class AuthController extends Controller
 		}
 		return view('auth.confirmation-sent');
 	}
+
+	public function forgotPassword()
+	{
+	}
 }
