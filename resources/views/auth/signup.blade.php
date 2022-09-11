@@ -15,10 +15,7 @@
                         <x-input-field name="email" type="email" placeholder="Enter your email" />
                         <x-input-field name="password" type="password" placeholder="Fill in password" />
                         <x-input-field name="repeat_password" type="password" placeholder="Repeat password" />
-                        <div class="mt-6">
-                            <input type="checkbox" id="remember" name="remember">
-                            <label for="remember" class="text-[#010414] text-sm">Remember this device</label>
-                        </div>
+
                         <x-auth-button text="SIGN UP" type="submit" />
                         <p class="text-[#808189] ">
                             Already have an account?
