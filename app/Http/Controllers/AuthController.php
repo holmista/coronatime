@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSignupRequest;
 use App\Http\Requests\StoreSigninRequest;
+use App\Http\Requests\ForgotPasswordRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Mail\VerifyEmail;
+use App\Mail\VerifyPassword;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -33,7 +39,7 @@ class AuthController extends Controller
 			$request->session()->put('requested_verification', true);
 			return redirect()->route('verification.notice');
 		}
-		$remember = $attributes['remember'] ? true : false;
+		$remember = array_key_exists('remember', $attributes) ? true : false;
 		unset($attributes['remember']);
 		if (Auth::attempt($attributes, $remember))
 		{
@@ -86,7 +92,40 @@ class AuthController extends Controller
 		return view('auth.confirmation-sent');
 	}
 
-	public function forgotPassword()
+	public function forgotPassword(ForgotPasswordRequest $request)
 	{
+		$email = $request->validated()['email'];
+		$user = User::where(['email'=>$email])->first();
+		if ($user->count === 0)
+		{
+			return redirect()->back()->withInput()->withErrors(['email'=>'invalid email']);
+		}
+		if (!$user->email_verified_at)
+		{
+			return redirect()->back()->withInput()->withErrors(['email'=>'email not verified']);
+		}
+		$token = Str::random(64);
+		DB::table('password_resets')->insert([
+			'email'      => $request->email,
+			'token'      => $token,
+			'created_at' => Carbon::now(),
+		]);
+		Mail::to($user)->queue(new VerifyPassword($token, $user));
+		$request->session()->put('requested_verification', true);
+		return redirect()->route('verification.notice');
+	}
+
+	public function resetPassword(ResetPasswordRequest $request)
+	{
+		$attributes = $request->validated();
+		$user = User::findOrFail($request->id);
+		$token = DB::table('password_resets')->where('email', '=', $user->email)->select('token');
+		if ($token == $request->token)
+		{
+			$user->password = $attributes['password'];
+			$user->save();
+			return redirect()->route('auth.view_signin');
+		}
+		return redirect()->back()->withInput()->withErrors(['password'=>'something went wrong, request reset link again']);
 	}
 }

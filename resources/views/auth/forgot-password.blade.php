@@ -6,7 +6,8 @@
             </div>
             <h1 class="font-black text-[#010414] text-2xl mt-14">Reset Password</h1>
         </section>
-        <form method="POST" action="/signin" class="w-screen h-screen absolute flex justify-center items-center top-0 ">
+        <form method="POST" action="/forgot-password"
+            class="w-screen h-screen absolute flex justify-center items-center top-0 ">
             @csrf
             <div class="space-y-5 max-w-[392px] w-full">
                 <div class="max-w-[392px] w-full">

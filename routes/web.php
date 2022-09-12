@@ -22,11 +22,14 @@ Route::middleware(['guest'])->group(function () {
 	Route::get('/email/verify', [AuthController::class, 'emailSent'])->middleware('requestedVerification')->name('verification.notice');
 	Route::get('/email/verify/{id}/{hash}', [AuthController::class, 'verifyEmail'])->name('verification.verify');
 	Route::post('/signin', [AuthController::class, 'signin']);
-	Route::view('/forgot-password', 'auth.forgot-password')->name('password.request');
-	Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('password.request');
+	Route::view('/forgot-password', 'auth.forgot-password')->name('password.forgot');
+	Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
+	Route::get('/password/verify/{id}/{token}')->name('password.request');
 });
 
 Route::middleware(['auth'])->group(function () {
 	Route::view('/', 'home')->name('home.index');
 	Route::get('/signout', [AuthController::class, 'signout']);
 });
+
+Route::view('/reset/{token}', 'auth.reset-password')->name('password.reset');
