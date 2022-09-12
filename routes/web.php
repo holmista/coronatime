@@ -24,12 +24,11 @@ Route::middleware(['guest'])->group(function () {
 	Route::post('/signin', [AuthController::class, 'signin']);
 	Route::view('/forgot-password', 'auth.forgot-password')->name('password.forgot');
 	Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
-	Route::get('/password/verify/{id}/{token}')->name('password.request');
+	Route::get('/password/verify/{id}/{token}', [AuthController::class, 'showResetPassword'])->name('password.request');
+	Route::patch('/reset-password', [AuthController::class, 'resetPassword'])->name('password.reset');
 });
 
 Route::middleware(['auth'])->group(function () {
 	Route::view('/', 'home')->name('home.index');
 	Route::get('/signout', [AuthController::class, 'signout']);
 });
-
-Route::view('/reset/{token}', 'auth.reset-password')->name('password.reset');

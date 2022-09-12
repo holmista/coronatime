@@ -18,6 +18,8 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
+// use Illuminate\Support\Carbon;
+
 class AuthController extends Controller
 {
 	public function signup(StoreSignupRequest $request): RedirectResponse
@@ -41,7 +43,8 @@ class AuthController extends Controller
 		}
 		$remember = array_key_exists('remember', $attributes) ? true : false;
 		unset($attributes['remember']);
-		if (Auth::attempt($attributes, $remember))
+		// dd($attributes);
+		if (Auth::attempt(['email'=>$user->first()->email, 'password'=>$attributes['password']], $remember))
 		{
 			return redirect()->route('home.index')->with('success', 'Welcome back!');
 		}
@@ -56,6 +59,11 @@ class AuthController extends Controller
 
 	public function verifyEmail(): RedirectResponse
 	{
+		if (Carbon::now()->gt(Carbon::createFromTimestamp(request()->query('expires'))))
+		{
+			dd(Carbon::now(), request()->query('expires'));
+			return redirect()->route('auth.view_signup');
+		}
 		$user = User::findOrFail(request()->id);
 		if ($user->hasVerifiedEmail())
 		{
@@ -96,7 +104,7 @@ class AuthController extends Controller
 	{
 		$email = $request->validated()['email'];
 		$user = User::where(['email'=>$email])->first();
-		if ($user->count === 0)
+		if (!$user)
 		{
 			return redirect()->back()->withInput()->withErrors(['email'=>'invalid email']);
 		}
@@ -105,7 +113,7 @@ class AuthController extends Controller
 			return redirect()->back()->withInput()->withErrors(['email'=>'email not verified']);
 		}
 		$token = Str::random(64);
-		DB::table('password_resets')->insert([
+		DB::table('password_resets')->updateOrInsert(['email' => $request->email], [
 			'email'      => $request->email,
 			'token'      => $token,
 			'created_at' => Carbon::now(),
@@ -117,15 +125,27 @@ class AuthController extends Controller
 
 	public function resetPassword(ResetPasswordRequest $request)
 	{
+		// dd('here');
 		$attributes = $request->validated();
 		$user = User::findOrFail($request->id);
-		$token = DB::table('password_resets')->where('email', '=', $user->email)->select('token');
-		if ($token == $request->token)
+		$token = DB::table('password_resets')->where('email', '=', $user->email)->select('token')->first()->token;
+		if ($token != $request->token)
 		{
-			$user->password = $attributes['password'];
-			$user->save();
-			return redirect()->route('auth.view_signin');
+			return redirect()->route('password.forgot');
 		}
-		return redirect()->back()->withInput()->withErrors(['password'=>'something went wrong, request reset link again']);
+		User::where(['email'=>$user->email])->update(['password'=>bcrypt($attributes['password'])]);
+		// $user->password = $attributes['password'];
+		// $user->save();
+		DB::table('password_resets')->where('email', $user->email)->delete();
+		return redirect()->route('auth.view_signin');
+	}
+
+	public function showResetPassword()
+	{
+		if (Carbon::now()->gt(Carbon::createFromTimestamp(request()->query('expires'))))
+		{
+			return redirect()->route('password.forgot');
+		}
+		return view('auth.reset-password');
 	}
 }

@@ -35,14 +35,14 @@ class VerifyPassword extends Mailable
 	 */
 	public function build()
 	{
-		$resetUrl = $this->generateUrl($this->user);
+		$resetUrl = $this->verificationUrl($this->user);
 		return $this->from('example@example.com', 'Example')
 				->subject('Reset Password')
 				->view('emails.recover-password')
 				->with(['resetUrl'=>$resetUrl]);
 	}
 
-	protected function generateUrl($notifiable)
+	protected function verificationUrl($notifiable)
 	{
 		return URL::temporarySignedRoute(
 			'password.request',
