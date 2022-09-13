@@ -6,6 +6,7 @@
                 Worldwide Statistics
             </h1>
             <x-stats-worldCountry />
+            <x-stats-cards />
         </div>
     </div>
 </x-generic-layout>
