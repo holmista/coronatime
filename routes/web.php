@@ -37,6 +37,6 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-	Route::view('/', 'home')->name('home.index');
 	Route::get('/signout', [AuthController::class, 'signout'])->name('auth.signout');
 });
+Route::view('/', 'stats.landing')->name('home.index');
