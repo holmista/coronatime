@@ -19,4 +19,11 @@ class StoreSigninRequest extends FormRequest
 			'remember'  => ['nullable'],
 		];
 	}
+
+	// public function messages()
+	// {
+	// 	return [
+	// 		'username'  => 'passwords do not match',
+	// 	];
+	// }
 }

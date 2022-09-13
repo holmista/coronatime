@@ -18,8 +18,6 @@ use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
-// use Illuminate\Support\Carbon;
-
 class AuthController extends Controller
 {
 	public function signup(StoreSignupRequest $request): RedirectResponse
@@ -47,12 +45,12 @@ class AuthController extends Controller
 		}
 		$remember = array_key_exists('remember', $attributes) ? true : false;
 		unset($attributes['remember']);
-		// dd($attributes);
 		if (Auth::attempt(['email'=>$user->first()->email, 'password'=>$attributes['password']], $remember))
 		{
+			$request->session()->regenerate();
 			return redirect()->route('home.index')->with('success', 'Welcome back!');
 		}
-		return redirect()->back()->withInput()->withErrors(['email'=>'invalid credentials']);
+		return redirect()->back()->withInput()->withErrors(['username'=>'invalid credentials']);
 	}
 
 	public function signout(): RedirectResponse
@@ -104,7 +102,7 @@ class AuthController extends Controller
 		return view('auth.confirmation-sent');
 	}
 
-	public function forgotPassword(ForgotPasswordRequest $request)
+	public function forgotPassword(ForgotPasswordRequest $request): RedirectResponse
 	{
 		$email = $request->validated()['email'];
 		$user = User::where(['email'=>$email])->first();
@@ -127,7 +125,7 @@ class AuthController extends Controller
 		return redirect()->route('verification.notice');
 	}
 
-	public function resetPassword(ResetPasswordRequest $request)
+	public function resetPassword(ResetPasswordRequest $request): RedirectResponse
 	{
 		$attributes = $request->validated();
 		$user = User::findOrFail($request->id);
@@ -141,7 +139,7 @@ class AuthController extends Controller
 		return redirect()->route('auth.view_signin');
 	}
 
-	public function showResetPassword()
+	public function showResetPassword(): View
 	{
 		if (Carbon::now()->gt(Carbon::createFromTimestamp(request()->query('expires'))))
 		{
