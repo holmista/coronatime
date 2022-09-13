@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\VerifyEmailController;
+use App\Http\Controllers\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,11 +19,15 @@ use App\Http\Controllers\AuthController;
 Route::middleware(['guest'])->group(function () {
 	Route::controller(AuthController::class)->group(function () {
 		Route::post('/signup', 'signup')->name('auth.signup')->name('auth.signup');
+		Route::post('/signin', 'signin')->name('auth.signin');
+	});
+	Route::controller(VerifyEmailController::class)->group(function () {
 		Route::get('/account-confirmed', 'accountConfirmed')->middleware('requestedVerification')->name('auth.view_account_confirmed');
 		Route::get('/email/verify', 'emailSent')->middleware('requestedVerification')->name('verification.notice');
-		Route::post('/signin', 'signin')->name('auth.signin');
-		Route::post('/forgot-password', 'forgotPassword')->name('auth.forgot_password');
 		Route::get('/email/verify/{id}/{hash}', 'verifyEmail')->name('verification.verify');
+	});
+	Route::controller(ForgotPasswordController::class)->group(function () {
+		Route::post('/forgot-password', 'forgotPassword')->name('auth.forgot_password');
 		Route::get('/password/verify/{id}/{token}', 'showResetPassword')->name('password.request');
 		Route::patch('/reset-password', 'resetPassword')->name('password.reset');
 	});
