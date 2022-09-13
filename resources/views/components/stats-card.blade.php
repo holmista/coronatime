@@ -1,7 +1,7 @@
 @props(['image', 'text', 'number', 'numberColor'])
 
 <div
-    {{ $attributes->merge(['class' => 'max-w-[392px] max-h-[255px] flex flex-col justify-around items-center py-8 rounded-2xl shadow-md']) }}>
+    {{ $attributes->merge(['class' => 'max-w-[392px] max-h-[255px] flex flex-col justify-around items-center py-5 sm:py-8 rounded-2xl shadow-md']) }}>
     <div>
         <img src="/storage/{{ $image }}" alt="">
     </div>
