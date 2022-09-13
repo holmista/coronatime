@@ -15,16 +15,18 @@ class ResetPasswordRequest extends FormRequest
 
 	public function rules()
 	{
-		// dd(request()->all());
-		// request()->merge(['password' => request()->all()['New_password']]);
-		// request()->merge(['repeat_password' => request()->all()['Repeat_password']]);
-		// dd(request()->all()['password']);
-		// request()->merge(['password' => request()->all()['New password']]);
 		return [
 			'id'                 => ['required', 'exists:users,id'],
 			'token'              => ['required', 'exists:password_resets,token'],
 			'password'           => ['required', 'min:3'],
 			'repeat_password'    => ['same:password'],
+		];
+	}
+
+	public function messages()
+	{
+		return [
+			'repeat_password.same'  => 'passwords do not match',
 		];
 	}
 }

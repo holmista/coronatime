@@ -125,7 +125,6 @@ class AuthController extends Controller
 
 	public function resetPassword(ResetPasswordRequest $request)
 	{
-		// dd('here');
 		$attributes = $request->validated();
 		$user = User::findOrFail($request->id);
 		$token = DB::table('password_resets')->where('email', '=', $user->email)->select('token')->first()->token;
@@ -134,8 +133,6 @@ class AuthController extends Controller
 			return redirect()->route('password.forgot');
 		}
 		User::where(['email'=>$user->email])->update(['password'=>bcrypt($attributes['password'])]);
-		// $user->password = $attributes['password'];
-		// $user->save();
 		DB::table('password_resets')->where('email', $user->email)->delete();
 		return redirect()->route('auth.view_signin');
 	}

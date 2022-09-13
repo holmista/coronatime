@@ -16,9 +16,6 @@
                 <x-input-field name="password" type="password" placeholder="Fill in password" />
                 <x-input-field name="repeat_password" type="password" placeholder="Repeat password" />
                 <x-auth-button text="SAVE CHANGES" type="submit" />
-                @if ($errors->any())
-                    {{ implode('', $errors->all('<div>:message</div>')) }}
-                @endif
             </div>
         </form>
     </div>
