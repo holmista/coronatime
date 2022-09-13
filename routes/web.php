@@ -29,7 +29,7 @@ Route::middleware(['guest'])->group(function () {
 	Route::controller(ForgotPasswordController::class)->group(function () {
 		Route::post('/forgot-password', 'forgotPassword')->name('auth.forgot_password');
 		Route::get('/password/verify/{id}/{token}', 'showResetPassword')->name('password.request');
-		Route::patch('/reset-password', 'resetPassword')->name('password.reset');
+		Route::patch('/reset-password', 'resetPassword')->middleware('requestedReset')->name('password.reset');
 	});
 	Route::view('/signup', 'auth.signup')->name('auth.view_signup');
 	Route::view('/signin', 'auth.signin')->name('auth.view_signin');

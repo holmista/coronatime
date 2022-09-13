@@ -33,7 +33,7 @@ class ForgotPasswordController extends Controller
 			'created_at' => Carbon::now(),
 		]);
 		Mail::to($user)->queue(new VerifyPassword($token, $user));
-		$request->session()->put('requested_verification', true);
+		$request->session()->put('requested_reset', true);
 		return redirect()->route('verification.notice');
 	}
 
@@ -48,6 +48,7 @@ class ForgotPasswordController extends Controller
 		}
 		User::where(['email'=>$user->email])->update(['password'=>bcrypt($attributes['password'])]);
 		DB::table('password_resets')->where('email', $user->email)->delete();
+		request()->session()->forget('requested_reset');
 		return redirect()->route('auth.view_signin');
 	}
 
