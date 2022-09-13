@@ -14,7 +14,6 @@ class VerifyEmailController extends Controller
 	{
 		if (Carbon::now()->gt(Carbon::createFromTimestamp(request()->query('expires'))))
 		{
-			dd(Carbon::now(), request()->query('expires'));
 			return redirect()->route('auth.view_signup');
 		}
 		$user = User::findOrFail(request()->id);
