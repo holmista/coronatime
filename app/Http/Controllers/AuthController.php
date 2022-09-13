@@ -25,7 +25,7 @@ class AuthController extends Controller
 	public function signin(StoreSigninRequest $request): RedirectResponse
 	{
 		$attributes = $request->validated();
-		$user = User::where(['email'=>$attributes['username']])->count() === 0 ? User::where(['username'=>$attributes['username']]) : User::where(['email'=>$attributes['username']]);
+		$user = User::where(['email'=>$request->username])->count() === 0 ? User::where(['username'=>$request->username]) : User::where(['email'=>$request->username]);
 		if (!$user->first())
 		{
 			return redirect()->back()->withInput()->withErrors(['username'=>'invalid email or username']);
