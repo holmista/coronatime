@@ -36,6 +36,10 @@ class AuthController extends Controller
 	{
 		$attributes = $request->validated();
 		$user = User::where(['email'=>$attributes['username']])->count() === 0 ? User::where(['username'=>$attributes['username']]) : User::where(['email'=>$attributes['username']]);
+		if (!$user->first())
+		{
+			return redirect()->back()->withInput()->withErrors(['username'=>'invalid email or username']);
+		}
 		if (!$user->first()->email_verified_at)
 		{
 			$request->session()->put('requested_verification', true);

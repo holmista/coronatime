@@ -12,9 +12,6 @@
                     <div class="space-y-5">
                         <x-input-field name="username" type="text" placeholder="Enter unique username or email" />
                         <x-input-field name="password" type="password" placeholder="Fill in password" />
-                        @if ($errors->any())
-                            {{ implode('', $errors->all('<div>:message</div>')) }}
-                        @endif
                         <div class="mt-6 flex justify-between">
                             <div>
                                 <input type="checkbox" id="remember" name="remember">
