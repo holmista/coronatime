@@ -8,7 +8,7 @@
                 <h1 class="text-2xl text-[#010414] font-extrabold mt-7 sm:mt-10">
                     Worldwide Statistics
                 </h1>
-                <x-stats-worldCountry />
+                <x-stats-worldCountry page="byCountry" />
                 <x-stats-searchbar />
                 <x-stats-table :data="$data" />
             </div>
