@@ -31,6 +31,7 @@ class FillDB extends Command
 	 */
 	public function handle()
 	{
+		$this->info('Started filling Database');
 		$statistics = [];
 		$numFailed = 0;
 		$countries = Http::get('https://devtest.ge/countries')->collect();
