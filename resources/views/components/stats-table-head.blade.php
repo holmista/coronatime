@@ -1,6 +1,6 @@
 @props(['name'])
 
-<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-[#010414]">
+<th scope="col" class="px-1 sm:px-3 py-3.5 text-left text-sm font-semibold text-[#010414]">
     <div class="flex items-center colName">
         <div>
             {{ $name }}
