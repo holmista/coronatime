@@ -32,7 +32,7 @@ class FillDB extends Command
 	public function handle()
 	{
 		$this->info('Started filling Database');
-		$statistics = [];
+		$statistics = collect();
 		$numFailed = 0;
 		$countries = Http::get('https://devtest.ge/countries')->collect();
 		foreach ($countries as $country)
@@ -54,17 +54,24 @@ class FillDB extends Command
 					'recovered'         => $stats['recovered'],
 					'deaths'            => $stats['deaths'],
 				];
-				array_push($statistics, $countryStat);
+				$statistics->push($countryStat);
 			}
 			else
 			{
 				$numFailed += 1;
 			}
 		}
+		$statistics->prepend([
+			'id'       => 1000,
+			'country'  => json_encode(['en'=>'Worldwide', 'ka'=>'საერთაშორისო']),
+			'confirmed'=> $statistics->sum('confirmed'),
+			'recovered'=> $statistics->sum('recovered'),
+			'deaths'   => $statistics->sum('deaths'),
+		]);
 		try
 		{
 			DB::transaction(function () use ($statistics) {
-				Statistic::upsert($statistics, ['id'], ['confirmed', 'recovered', 'deaths']);
+				Statistic::upsert($statistics->toArray(), ['id'], ['confirmed', 'recovered', 'deaths']);
 			});
 		}
 		catch(Exception $e)

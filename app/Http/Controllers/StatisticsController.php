@@ -10,7 +10,9 @@ class StatisticsController extends Controller
 	public function index(): View
 	{
 		$data = Statistic::latest()->get();
-		// ddd($data[0]->country);
+		$worldwide = $data->pop();
+		$data->prepend($worldwide);
+		// ddd($data);
 		return view('stats.landing-country', ['data'=>$data]);
 	}
 }
