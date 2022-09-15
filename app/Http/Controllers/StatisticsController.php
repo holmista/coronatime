@@ -12,7 +12,12 @@ class StatisticsController extends Controller
 		$data = Statistic::latest()->get();
 		$worldwide = $data->pop();
 		$data->prepend($worldwide);
-		// ddd($data);
 		return view('stats.landing-country', ['data'=>$data]);
+	}
+
+	public function showWorldwide(): View
+	{
+		$data = Statistic::find(1000);
+		return view('stats.landing-worldwide', ['data'=>$data]);
 	}
 }

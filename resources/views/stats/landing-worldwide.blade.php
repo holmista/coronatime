@@ -6,7 +6,7 @@
                 Worldwide Statistics
             </h1>
             <x-stats-worldCountry page="worldwide" />
-            <x-stats-cards />
+            <x-stats-cards :worldwide="$data" />
         </div>
     </div>
 </x-generic-layout>

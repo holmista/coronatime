@@ -40,5 +40,5 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
 	Route::get('/signout', [AuthController::class, 'signout'])->name('auth.signout');
 });
-Route::view('/', 'stats.landing-worldwide')->name('home.index');
+Route::get('/', [StatisticsController::class, 'showWorldwide'])->name('home.index');
 Route::get('/countries', [StatisticsController::class, 'index'])->name('country.index');
