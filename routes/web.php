@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\StatisticsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,4 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/signout', [AuthController::class, 'signout'])->name('auth.signout');
 });
 Route::view('/', 'stats.landing-worldwide')->name('home.index');
-Route::view('/{id}', 'stats.landing-country')->name('country.index');
+Route::get('/{id}', [StatisticsController::class, 'index'])->name('country.index');
