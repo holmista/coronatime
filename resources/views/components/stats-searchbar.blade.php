@@ -2,6 +2,9 @@
     <div class="pl-6 pr-4">
         <img src="/storage/magnifier.png" alt="">
     </div>
-    <input placeholder="Search by country"
-        class="max-w-[165px] w-full outline-none text-[#808189] text-md border-solid border-2 border-white ">
+    <form method="GET" action="/countries#">
+        <input placeholder="Search by country" type="text" name="search"
+            class="max-w-[165px] w-full outline-none text-[#808189] text-md border-solid border-2 border-white"
+            value="{{ request('search') }}">
+    </form>
 </div>

@@ -7,5 +7,4 @@
         class="bg-[#eaf8f1] " />
     <x-stats-card image="yellowGraph.png" text="Death" number="{{ $worldwide->deaths }}" numberColor="yellow"
         class="bg-[#fcfaec] " />
-
 </div>

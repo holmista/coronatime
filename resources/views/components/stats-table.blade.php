@@ -8,10 +8,10 @@
                     <table class="min-w-full divide-y divide-gray-300">
                         <thead class="bg-gray-50">
                             <tr>
-                                <x-stats-table-head name="Location" />
-                                <x-stats-table-head name="New cases" />
-                                <x-stats-table-head name="Deaths" />
-                                <x-stats-table-head name="Recovered" />
+                                <x-stats-table-head name="Location" slug="country" />
+                                <x-stats-table-head name="New cases" slug="confirmed" />
+                                <x-stats-table-head name="Deaths" slug="deaths" />
+                                <x-stats-table-head name="Recovered" slug="recovered" />
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 bg-white">
