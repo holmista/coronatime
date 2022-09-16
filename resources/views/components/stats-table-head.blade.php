@@ -7,10 +7,10 @@
         </div>
         <div class="pl-2 flex flex-col justify-between h-[14px]">
             <a href="/countries?{{ Arr::query(array_merge(Request::except($slug), [$slug => 'asc'])) }}">
-                <x-stats-arrowUp />
+                <x-stats-arrowUp name="asc-{{ $slug }}" />
             </a>
             <a href="/countries?{{ Arr::query(array_merge(Request::except($slug), [$slug => 'desc'])) }}">
-                <x-stats-arrowDown />
+                <x-stats-arrowDown name="desc-{{ $slug }}" />
             </a>
         </div>
     </div>
