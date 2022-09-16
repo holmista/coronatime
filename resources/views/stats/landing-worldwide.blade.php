@@ -5,8 +5,8 @@
             <h1 class="text-2xl text-[#010414] font-extrabold mt-7 sm:mt-10">
                 Worldwide Statistics
             </h1>
-            <x-stats-worldCountry />
-            <x-stats-cards />
+            <x-stats-worldCountry page="worldwide" />
+            <x-stats-cards :worldwide="$data" />
         </div>
     </div>
 </x-generic-layout>
