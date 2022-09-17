@@ -44,4 +44,6 @@ return [
 	'passwords_do_not_match'                   => 'პაროლები არ ემთხვევა',
 	'we_have_sent_you_a_confirmation_email'    => 'დადასტურების იმეილი გამოგზავნილია',
 	'your_account_is_confirmed_you_can_sign_in'=> 'ექაუნთი დადასტურებულია, შეგიძლია შეხვიდე',
+	'recover_password'                         => 'პაროლის აღდგენა',
+	'click_this_button_to_recover_a_password'  => 'დააჭირე ღილაკს რომ აღადგინო პაროლი',
 ];

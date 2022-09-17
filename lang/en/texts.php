@@ -44,4 +44,6 @@ return [
 	'passwords_do_not_match'                   => 'passwords do not match',
 	'we_have_sent_you_a_confirmation_email'    => 'We have sent you a confirmation email',
 	'your_account_is_confirmed_you_can_sign_in'=> 'Your account is confirmed, you can sign in',
+	'recover_password'                         => 'Recover password',
+	'click_this_button_to_recover_a_password'  => 'click this button to recover a password',
 ];
