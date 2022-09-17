@@ -3,7 +3,8 @@
 <div>
     <label for="{{ $name }}">
         <p class="text-[#010414] text-sm">
-            {{ ucfirst(str_replace('_', ' ', $name)) }}
+            {{ ucfirst(str_replace('_', ' ', __('texts.' . $name))) }}
+            {{-- {{ __('texts.' . $name) }} --}}
         </p>
     </label>
     <div class="mt-2">

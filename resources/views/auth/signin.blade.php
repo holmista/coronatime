@@ -29,7 +29,7 @@
                                 <p class="text-[#2029F3] text-sm">{{ __('texts.forgot_password') }}</p>
                             </a>
                         </div>
-                        <x-auth-button text="SIGN IN" type="submit" />
+                        <x-auth-button text="{{ __('texts.sign_in') }}" type="submit" />
                         <p class="text-[#808189] ">
                             {{ __('texts.dont_have_an_account') }}
                             <a href="/signup" class="hover: cursor-pointer">
