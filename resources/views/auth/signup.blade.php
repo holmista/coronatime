@@ -10,14 +10,13 @@
                 <form method="POST" action="/signup" class="mt-6">
                     @csrf
                     <div class="space-y-5">
-                        <x-input-field name="{{ __('texts.username') }}" type="text"
+                        <x-input-field name="username" type="text"
                             placeholder="{{ __('texts.enter_unique_username') }}"
                             moreInfo="{{ __('texts.username_should_be_unique_min_3_symbols') }}" />
-                        <x-input-field name="{{ __('texts.email') }}" type="email"
-                            placeholder="{{ __('texts.enter_your_email') }}" />
-                        <x-input-field name="{{ __('texts.password') }}" type="password"
+                        <x-input-field name="email" type="email" placeholder="{{ __('texts.enter_your_email') }}" />
+                        <x-input-field name="password" type="password"
                             placeholder="{{ __('texts.fill_in_password') }}" />
-                        <x-input-field name="{{ __('texts.repeat_password') }}" type="password"
+                        <x-input-field name="repeat_password" type="password"
                             placeholder="{{ __('texts.repeat_password') }}" />
 
                         <x-auth-button text="{{ __('texts.sign_up') }}" type="submit" />

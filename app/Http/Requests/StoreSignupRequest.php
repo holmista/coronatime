@@ -20,4 +20,11 @@ class StoreSignupRequest extends FormRequest
 			'repeat_password'    => ['same:password'],
 		];
 	}
+
+	// public function messages()
+	// {
+	// 	return [
+	// 		'repeat_password.same'  => 'passwords do not match',
+	// 	];
+	// }
 }

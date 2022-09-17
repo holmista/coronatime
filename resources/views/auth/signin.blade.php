@@ -10,9 +10,9 @@
                 <form method="POST" action="/signin" class="mt-6">
                     @csrf
                     <div class="space-y-5">
-                        <x-input-field name="{{ __('texts.username') }}" type="text"
+                        <x-input-field name="username" type="text"
                             placeholder="{{ __('texts.enter_unique_username_or_email') }}" />
-                        <x-input-field name="{{ __('texts.password') }}" type="password"
+                        <x-input-field name="password" type="password"
                             placeholder="{{ __('texts.fill_in_password') }}" />
                         <div class="mt-6 flex justify-between">
                             <div class="relative flex items-start">

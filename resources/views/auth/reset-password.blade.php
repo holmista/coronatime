@@ -13,10 +13,8 @@
             <div class="space-y-5 max-w-[392px] w-full">
                 <input name="id" type="hidden" value="{{ request()->id }}">
                 <input name="token" type="hidden" value="{{ request()->token }}">
-                <x-input-field name="{{ __('texts.password') }}" type="password"
-                    placeholder="{{ __('texts.fill_in_password') }}" />
-                <x-input-field name="{{ __('texts.repeat_password') }}" type="password"
-                    placeholder="{{ __('texts.repeat_password') }}" />
+                <x-input-field name="password" type="password" placeholder="{{ __('texts.fill_in_password') }}" />
+                <x-input-field name="repeat_password" type="password" placeholder="{{ __('texts.repeat_password') }}" />
                 <x-auth-button text="{{ __('texts.save_changes') }}" type="submit" />
             </div>
         </form>

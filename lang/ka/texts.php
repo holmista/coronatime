@@ -37,4 +37,10 @@ return [
 	'log_in'                                 => 'შესვლა',
 	'reset_password'                         => 'შეცვალე პაროლი',
 	'save_changes'                           => 'ცვლილებების შენახვა',
+	'invalid_email_or_username'              => 'არავალიდური იმეილი ან სახელი.',
+	'invalid_credentials'                    => 'არავალიდური მონაცემები',
+	'invalid_email'                          => 'არავალიდური იმეილი',
+	'email_not_verified'                     => 'იმეილი არ არის ვერიფიცირებული',
+	'passwords_do_not_match'                 => 'პაროლები არ ემთხვევა',
+	'we_have_sent_you_a_confirmation_email'  => 'დადასტურების იმეილი გამოგზავნილია',
 ];

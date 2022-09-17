@@ -19,11 +19,11 @@ class ForgotPasswordController extends Controller
 		$user = User::where(['email'=>$request->email])->first();
 		if (!$user)
 		{
-			return redirect()->back()->withInput()->withErrors(['email'=>'invalid email']);
+			return redirect()->back()->withInput()->withErrors(['email'=>__('texts.invalid_email')]);
 		}
 		if (!$user->email_verified_at)
 		{
-			return redirect()->back()->withInput()->withErrors(['email'=>'email not verified']);
+			return redirect()->back()->withInput()->withErrors(['email'=>__('texts.email_not_verified')]);
 		}
 		$token = Str::random(64);
 		DB::table('password_resets')->updateOrInsert(['email' => $request->email], [
@@ -32,7 +32,7 @@ class ForgotPasswordController extends Controller
 			'created_at' => Carbon::now(),
 		]);
 		Mail::to($user)->queue(new VerifyPassword($token, $user));
-		$request->session()->put('requested_reset', true);
+		$request->session()->put('requested_verification', true);
 		return redirect()->route('verification.notice');
 	}
 

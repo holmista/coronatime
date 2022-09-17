@@ -37,4 +37,10 @@ return [
 	'log_in'                                 => 'Log in',
 	'reset_password'                         => 'Reset Password',
 	'save_changes'                           => 'SAVE CHANGES',
+	'invalid_email_or_username'              => 'invalid email or username.',
+	'invalid_credentials'                    => 'invalid credentials',
+	'invalid_email'                          => 'invalid email',
+	'email_not_verified'                     => 'email not verified',
+	'passwords_do_not_match'                 => 'passwords do not match',
+	'we_have_sent_you_a_confirmation_email'  => 'We have sent you a confirmation email',
 ];
