@@ -4,17 +4,18 @@
             <div>
                 <img src="/storage/logo.png" alt="">
             </div>
-            <h1 class="font-black text-[#010414] text-2xl mt-14">Reset Password</h1>
+            <h1 class="font-black text-[#010414] text-2xl mt-14">{{ __('texts.reset_password') }}</h1>
         </section>
         <form method="POST" action="/forgot-password"
             class="w-screen h-screen absolute flex justify-center items-center top-0 ">
             @csrf
             <div class="space-y-5 max-w-[392px] w-full">
                 <div class="max-w-[392px] w-full">
-                    <x-input-field name="email" type="email" placeholder="Enter your email" />
+                    <x-input-field name="{{ __('texts.email') }}" type="email"
+                        placeholder="{{ __('texts.enter_your_email') }}" />
                 </div>
                 <div class="mt-6 "></div>
-                <x-auth-button text="RESET PASSWORD" type="submit" />
+                <x-auth-button text="{{ strtoupper(__('texts.reset_password')) }}" type="submit" />
             </div>
         </form>
     </div>

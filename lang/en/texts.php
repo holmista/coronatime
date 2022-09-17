@@ -35,4 +35,5 @@ return [
 	'sign_up'                                => 'SIGN UP',
 	'already_have_an_account'                => 'Already have an account?',
 	'log_in'                                 => 'Log in',
+	'reset_password'                         => 'Reset Password',
 ];
