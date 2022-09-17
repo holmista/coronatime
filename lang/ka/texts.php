@@ -36,4 +36,5 @@ return [
 	'already_have_an_account'                => 'უკვე გაქვს ექაუნთი?',
 	'log_in'                                 => 'შესვლა',
 	'reset_password'                         => 'შეცვალე პაროლი',
+	'save_changes'                           => 'ცვლილებების შენახვა',
 ];

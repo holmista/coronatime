@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ForgotPasswordRequest;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use App\Mail\VerifyPassword;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -52,7 +51,7 @@ class ForgotPasswordController extends Controller
 		return redirect()->route('auth.view_signin');
 	}
 
-	public function showResetPassword(): View
+	public function showResetPassword()
 	{
 		if (Carbon::now()->gt(Carbon::createFromTimestamp(request()->query('expires'))))
 		{
