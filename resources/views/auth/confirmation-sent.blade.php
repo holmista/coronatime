@@ -10,7 +10,7 @@
                 </div>
 
                 <p class="text-lg">
-                    We have sent you a confirmation email
+                    {{ __('texts.we_have_sent_you_a_confirmation_email') }}
                 </p>
             </div>
         </div>

@@ -19,9 +19,8 @@ class RequestedVerification
 	{
 		if ($request->session()->get('requested_verification') !== null)
 		{
-			dd('here');
 			return $next($request);
 		}
-		return redirect()->route('auth.signup');
+		return redirect()->route('auth.view_signup');
 	}
 }
