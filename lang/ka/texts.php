@@ -46,4 +46,7 @@ return [
 	'your_account_is_confirmed_you_can_sign_in'=> 'ექაუნთი დადასტურებულია, შეგიძლია შეხვიდე',
 	'recover_password'                         => 'პაროლის აღდგენა',
 	'click_this_button_to_recover_a_password'  => 'დააჭირე ღილაკს რომ აღადგინო პაროლი',
+	'confirmation_email'                       => 'დადასტურების იმეილი',
+	'click_this_button_to_verify_your_email'   => 'დააჭირე ღილაკს რომ დაადასტური იმეილი',
+	'verify_email'                             => 'დაადასტურე იმეილი',
 ];
