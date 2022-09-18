@@ -6,7 +6,7 @@
         <img src="/storage/{{ $image }}" alt="">
     </div>
     <div>
-        <p class="text-xl text-[#010414] py-">{{ $text }}</p>
+        <p class="text-xl text-[#010414] py-">{{ __('texts.' . $text) }}</p>
     </div>
     <div>
         @switch($numberColor)

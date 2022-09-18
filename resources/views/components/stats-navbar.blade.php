@@ -9,8 +9,8 @@
                     @csrf
                     <label for="language"></label>
                     <select name="language" id="language" class="border-0 outline-none" onchange="this.form.submit()">
-                        <option value="en">English</option>
-                        <option value="ka">Georgian</option>
+                        <option value="en">{{ __('texts.english') }}</option>
+                        <option value="ka">{{ __('texts.georgian') }}</option>
                     </select>
                 </form>
             </div>
@@ -21,7 +21,7 @@
                 <form action="/signout">
                     @csrf
                     <button type="submit">
-                        Log Out
+                        {{ __('texts.log_out') }}
                     </button>
                 </form>
             </div>
@@ -36,7 +36,7 @@
                             <form action="/signout">
                                 @csrf
                                 <button type="submit">
-                                    Log Out
+                                    {{ __('texts.log_out') }}
                                 </button>
                             </form>
                         </div>
