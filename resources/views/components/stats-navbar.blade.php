@@ -5,11 +5,14 @@
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3">
             <div>
-                <label for="language"></label>
-                <select name="language" id="language" class="border-0 outline-none">
-                    <option value="English">English</option>
-                    <option value="Georgian">Georgian</option>
-                </select>
+                <form method="post" action="/locale">
+                    @csrf
+                    <label for="language"></label>
+                    <select name="language" id="language" class="border-0 outline-none" onchange="this.form.submit()">
+                        <option value="en">English</option>
+                        <option value="ka">Georgian</option>
+                    </select>
+                </form>
             </div>
             <div class="hidden justify-center items-center sm:flex">
                 <p>Takeshi.K</p>

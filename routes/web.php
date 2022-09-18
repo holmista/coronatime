@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\LocaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,5 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::get('/', [StatisticsController::class, 'showWorldwide'])->name('home.index');
 Route::get('/countries', [StatisticsController::class, 'index'])->name('country.index');
+
+Route::post('/locale', [LocaleController::class, 'change']);
