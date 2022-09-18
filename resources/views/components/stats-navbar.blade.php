@@ -9,8 +9,10 @@
                     @csrf
                     <label for="language"></label>
                     <select name="language" id="language" class="border-0 outline-none" onchange="this.form.submit()">
-                        <option value="en">{{ __('texts.english') }}</option>
-                        <option value="ka">{{ __('texts.georgian') }}</option>
+                        <option value="en" {{ App::isLocale('en') ? 'selected' : '' }}>{{ __('texts.english') }}
+                        </option>
+                        <option value="ka" {{ App::isLocale('ka') ? 'selected' : '' }}>{{ __('texts.georgian') }}
+                        </option>
                     </select>
                 </form>
             </div>
