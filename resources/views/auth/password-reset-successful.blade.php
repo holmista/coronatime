@@ -9,7 +9,7 @@
                     <img src="/storage/tick.png" alt="">
                 </div>
                 <div class="mb-20">
-                    <p class="text-lg">
+                    <p class="text-lg break-all">
                         {{ __('texts.your_password_has_been_updated_successfully') }}
                     </p>
                 </div>

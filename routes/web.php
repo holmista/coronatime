@@ -29,9 +29,10 @@ Route::middleware(['guest'])->group(function () {
 		Route::get('/email/verify/{id}/{hash}', 'verifyEmail')->name('verification.verify');
 	});
 	Route::controller(ForgotPasswordController::class)->group(function () {
+		Route::get('/reset-sent', 'emailSent')->middleware('requestedReset')->name('password.reset_sent');
 		Route::post('/forgot-password', 'forgotPassword')->name('auth.forgot_password');
 		Route::get('/password/verify/{id}/{token}', 'showResetPassword')->name('password.request');
-		Route::patch('/reset-password', 'resetPassword')->middleware('requestedReset')->name('password.reset');
+		Route::patch('/reset-password', 'resetPassword')->name('password.reset');
 		Route::get('/reset-successful', 'resetSuccessful')->middleware('passwordResetSuccessful')->name('auth.reset_success');
 	});
 	Route::view('/signup', 'auth.signup')->name('auth.view_signup');
@@ -41,8 +42,9 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
 	Route::get('/signout', [AuthController::class, 'signout'])->name('auth.signout');
+	Route::get('/', [StatisticsController::class, 'showWorldwide'])->name('home.index');
+	Route::get('/countries', [StatisticsController::class, 'index'])->name('country.index');
 });
-Route::get('/', [StatisticsController::class, 'showWorldwide'])->name('home.index');
-Route::get('/countries', [StatisticsController::class, 'index'])->name('country.index');
 
 Route::post('/locale', [LocaleController::class, 'change']);
+Route::view('/mf', 'emails.verify-email');
