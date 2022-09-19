@@ -32,6 +32,7 @@ Route::middleware(['guest'])->group(function () {
 		Route::post('/forgot-password', 'forgotPassword')->name('auth.forgot_password');
 		Route::get('/password/verify/{id}/{token}', 'showResetPassword')->name('password.request');
 		Route::patch('/reset-password', 'resetPassword')->middleware('requestedReset')->name('password.reset');
+		Route::get('/reset-successful', 'resetSuccessful')->middleware('passwordResetSuccessful')->name('auth.reset_success');
 	});
 	Route::view('/signup', 'auth.signup')->name('auth.view_signup');
 	Route::view('/signin', 'auth.signin')->name('auth.view_signin');
@@ -45,5 +46,3 @@ Route::get('/', [StatisticsController::class, 'showWorldwide'])->name('home.inde
 Route::get('/countries', [StatisticsController::class, 'index'])->name('country.index');
 
 Route::post('/locale', [LocaleController::class, 'change']);
-
-Route::get('/reset-successful', [ForgotPasswordController::class, 'resetSuccessful'])->name('auth.reset_success');

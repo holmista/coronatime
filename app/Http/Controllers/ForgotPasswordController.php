@@ -48,7 +48,8 @@ class ForgotPasswordController extends Controller
 		User::where(['email'=>$user->email])->update(['password'=>bcrypt($attributes['password'])]);
 		DB::table('password_resets')->where('email', $user->email)->delete();
 		request()->session()->forget('requested_reset');
-		return redirect()->route('auth.view_signin');
+		$request->session()->put('password_reset_successful', true);
+		return redirect()->route('auth.reset_success');
 	}
 
 	public function showResetPassword()
@@ -62,6 +63,7 @@ class ForgotPasswordController extends Controller
 
 	public function resetSuccessful()
 	{
+		request()->session()->forget('password_reset_successful');
 		return view('auth.password-reset-successful');
 	}
 }
