@@ -28,7 +28,7 @@ class AuthController extends Controller
 		$user = User::where(['email'=>$request->username])->count() === 0 ? User::where(['username'=>$request->username]) : User::where(['email'=>$request->username]);
 		if (!$user->first())
 		{
-			return redirect()->back()->withInput()->withErrors(['username'=>'invalid email or username']);
+			return redirect()->back()->withInput()->withErrors(['username'=>__('texts.invalid_email_or_username')]);
 		}
 		if (!$user->first()->email_verified_at)
 		{
@@ -42,7 +42,7 @@ class AuthController extends Controller
 			$request->session()->regenerate();
 			return redirect()->route('home.index')->with('success', 'Welcome back!');
 		}
-		return redirect()->back()->withInput()->withErrors(['username'=>'invalid credentials']);
+		return redirect()->back()->withInput()->withErrors(['username'=>__('texts.invalid_credentials')]);
 	}
 
 	public function signout(): RedirectResponse

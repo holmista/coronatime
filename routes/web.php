@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\LocaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::middleware(['guest'])->group(function () {
 		Route::post('/forgot-password', 'forgotPassword')->name('auth.forgot_password');
 		Route::get('/password/verify/{id}/{token}', 'showResetPassword')->name('password.request');
 		Route::patch('/reset-password', 'resetPassword')->middleware('requestedReset')->name('password.reset');
+		Route::get('/reset-successful', 'resetSuccessful')->middleware('passwordResetSuccessful')->name('auth.reset_success');
 	});
 	Route::view('/signup', 'auth.signup')->name('auth.view_signup');
 	Route::view('/signin', 'auth.signin')->name('auth.view_signin');
@@ -42,3 +44,5 @@ Route::middleware(['auth'])->group(function () {
 });
 Route::get('/', [StatisticsController::class, 'showWorldwide'])->name('home.index');
 Route::get('/countries', [StatisticsController::class, 'index'])->name('country.index');
+
+Route::post('/locale', [LocaleController::class, 'change']);

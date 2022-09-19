@@ -4,8 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 
-class RequestedVerification
+class Localization
 {
 	/**
 	 * Handle an incoming request.
@@ -17,10 +19,7 @@ class RequestedVerification
 	 */
 	public function handle(Request $request, Closure $next)
 	{
-		if ($request->session()->get('requested_verification') !== null)
-		{
-			return $next($request);
-		}
-		return redirect()->route('auth.view_signup');
+		App::setLocale(Session::get('locale', 'en'));
+		return $next($request);
 	}
 }

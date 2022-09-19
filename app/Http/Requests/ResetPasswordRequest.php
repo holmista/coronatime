@@ -26,7 +26,7 @@ class ResetPasswordRequest extends FormRequest
 	public function messages()
 	{
 		return [
-			'repeat_password.same'  => 'passwords do not match',
+			'repeat_password.same'  => __('texts.passwords_do_not_match'),
 		];
 	}
 }

@@ -8,10 +8,12 @@
                 <div>
                     <img src="/storage/tick.png" alt="">
                 </div>
-
-                <p class="text-lg">
-                    {{ __('texts.we_have_sent_you_a_confirmation_email') }}
-                </p>
+                <div class="mb-20">
+                    <p class="text-lg">
+                        {{ __('texts.your_password_has_been_updated_successfully') }}
+                    </p>
+                </div>
+                <x-auth-button text="{{ __('texts.sign_in') }}" link="/signin" />
             </div>
         </div>
     </div>

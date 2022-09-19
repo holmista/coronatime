@@ -23,17 +23,17 @@
             <img src="{{ $message->embed(public_path() . '/storage/emailConfirm.png') }}" alt="">
         </div>
         <h1 style="font-size: 24px; font-weight: 900; text-align: center; color: black;">
-            Recover password
+            {{ __('texts.recover_password') }}
         </h1>
         <p style="font-size: 18px; color:black; text-align: center;">
-            click this button to recover a password
+            {{ __('texts.click_this_button_to_recover_a_password') }}
         </p>
         <a href="{{ $resetUrl }}"
             style="max-width: 392px; width: 100%; background-color: rgb(15 186 104); border-radius: 8px; max-height: 56px;
              display: flex; justify-content: center; align-items: center;">
             <p
                 style="padding-top: 1rem; padding-bottom: 1rem; font-size: 16px; font-weight: 900;color: rgb(255 255 255); text-align: center; text-decoration: none;">
-                RECOVER PASSWORD
+                {{ strtoupper(__('texts.recover_password')) }}
             </p>
         </a>
     </div>

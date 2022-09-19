@@ -10,10 +10,10 @@
                 </div>
                 <div class="mb-20">
                     <p class="text-lg">
-                        Your account is confirmed, you can sign in
+                        {{ __('texts.your_account_is_confirmed_you_can_sign_in') }}
                     </p>
                 </div>
-                <x-auth-button text="SIGN IN" link="/signin" />
+                <x-auth-button text="{{ __('texts.sign_in') }}" link="/signin" />
             </div>
         </div>
     </div>

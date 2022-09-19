@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class RequestedVerification
+class PasswordResetSuccessful
 {
 	/**
 	 * Handle an incoming request.
@@ -17,7 +17,7 @@ class RequestedVerification
 	 */
 	public function handle(Request $request, Closure $next)
 	{
-		if ($request->session()->get('requested_verification') !== null)
+		if ($request->session()->get('password_reset_successful') !== null)
 		{
 			return $next($request);
 		}

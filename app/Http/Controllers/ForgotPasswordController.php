@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ForgotPasswordRequest;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 use App\Mail\VerifyPassword;
 use App\Models\User;
 use Illuminate\Support\Str;
@@ -20,11 +19,11 @@ class ForgotPasswordController extends Controller
 		$user = User::where(['email'=>$request->email])->first();
 		if (!$user)
 		{
-			return redirect()->back()->withInput()->withErrors(['email'=>'invalid email']);
+			return redirect()->back()->withInput()->withErrors(['email'=>__('texts.invalid_email')]);
 		}
 		if (!$user->email_verified_at)
 		{
-			return redirect()->back()->withInput()->withErrors(['email'=>'email not verified']);
+			return redirect()->back()->withInput()->withErrors(['email'=>__('texts.email_not_verified')]);
 		}
 		$token = Str::random(64);
 		DB::table('password_resets')->updateOrInsert(['email' => $request->email], [
@@ -33,7 +32,7 @@ class ForgotPasswordController extends Controller
 			'created_at' => Carbon::now(),
 		]);
 		Mail::to($user)->queue(new VerifyPassword($token, $user));
-		$request->session()->put('requested_reset', true);
+		$request->session()->put('requested_verification', true);
 		return redirect()->route('verification.notice');
 	}
 
@@ -49,15 +48,22 @@ class ForgotPasswordController extends Controller
 		User::where(['email'=>$user->email])->update(['password'=>bcrypt($attributes['password'])]);
 		DB::table('password_resets')->where('email', $user->email)->delete();
 		request()->session()->forget('requested_reset');
-		return redirect()->route('auth.view_signin');
+		$request->session()->put('password_reset_successful', true);
+		return redirect()->route('auth.reset_success');
 	}
 
-	public function showResetPassword(): View
+	public function showResetPassword()
 	{
 		if (Carbon::now()->gt(Carbon::createFromTimestamp(request()->query('expires'))))
 		{
 			return redirect()->route('password.forgot');
 		}
 		return view('auth.reset-password');
+	}
+
+	public function resetSuccessful()
+	{
+		request()->session()->forget('password_reset_successful');
+		return view('auth.password-reset-successful');
 	}
 }

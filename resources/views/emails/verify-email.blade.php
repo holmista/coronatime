@@ -23,17 +23,17 @@
             <img src="{{ $message->embed(public_path() . '/storage/emailConfirm.png') }}" alt="">
         </div>
         <h1 style="font-size: 24px; font-weight: 900; text-align: center; color: black;">
-            Confirmation email
+            {{ __('texts.confirmation_email') }}
         </h1>
         <p style="font-size: 18px; color:black; text-align: center;">
-            click this button to verify your email
+            {{ __('texts.click_this_button_to_verify_your_email') }}
         </p>
         <a href="{{ $confirmationUrl }}"
             style="max-width: 392px; width: 100%; background-color: rgb(15 186 104); border-radius: 8px; max-height: 56px;
              display: flex; justify-content: center; align-items: center;">
             <p
                 style="padding-top: 1rem; padding-bottom: 1rem; font-size: 16px; font-weight: 900;color: rgb(255 255 255); text-align: center; text-decoration: none;">
-                VERIFY EMAIL
+                {{ strtoupper(__('texts.confirmation_email')) }}
             </p>
         </a>
     </div>
