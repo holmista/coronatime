@@ -59,4 +59,9 @@ class ForgotPasswordController extends Controller
 		}
 		return view('auth.reset-password');
 	}
+
+	public function resetSuccessful()
+	{
+		return view('auth.password-reset-successful');
+	}
 }

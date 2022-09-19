@@ -45,3 +45,5 @@ Route::get('/', [StatisticsController::class, 'showWorldwide'])->name('home.inde
 Route::get('/countries', [StatisticsController::class, 'index'])->name('country.index');
 
 Route::post('/locale', [LocaleController::class, 'change']);
+
+Route::get('/reset-successful', [ForgotPasswordController::class, 'resetSuccessful'])->name('auth.reset_success');
