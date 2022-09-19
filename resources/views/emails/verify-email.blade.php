@@ -44,7 +44,7 @@
              display: flex; justify-content: center; align-items: center;">
             <p
                 style="padding-top: 1rem; padding-bottom: 1rem; font-size: 16px; font-weight: 900;color: rgb(255 255 255); text-align: center; text-decoration: none;">
-                {{ strtoupper(__('texts.confirmation_email')) }}
+                {{ strtoupper(__('texts.verify_email')) }}
             </p>
         </a>
     </div>
