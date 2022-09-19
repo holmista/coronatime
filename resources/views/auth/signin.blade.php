@@ -1,10 +1,10 @@
 <x-generic-layout>
     <div class="flex justify-between h-screen">
-        <div class="mt-10 max-w-[430px] w-full flex justify-end">
+        <div class="mt-10 max-w-[430px] w-full flex justify-center lg:justify-end">
             <div class="w-11/12">
                 <section>
                     <img src="/storage/logo.png" alt="">
-                    <h1 class="font-black text-[#010414] text-2xl mt-14">{{ __('texts.welcome_back') }}</h1>
+                    <h1 class="font-black text-[#010414] text-2xl mt-6 lg:mt-14">{{ __('texts.welcome_back') }}</h1>
                     <h3 class="text-lg text-[#808189]">{{ __('texts.welcome_back_please_enter_your_details') }}</h3>
                 </section>
                 <form method="POST" action="/signin" class="mt-6">
@@ -30,7 +30,7 @@
                             </a>
                         </div>
                         <x-auth-button text="{{ __('texts.sign_in') }}" type="submit" />
-                        <p class="text-[#808189] ">
+                        <p class="text-[#808189] text-center lg:text-left">
                             {{ __('texts.dont_have_an_account') }}
                             <a href="/signup" class="hover: cursor-pointer">
                                 <strong class="text-[#010414]">{{ __('texts.sign_up_for_free') }}</strong>
@@ -40,6 +40,6 @@
                 </form>
             </div>
         </div>
-        <img src="/storage/vaccine.png" alt="">
+        <img src="/storage/vaccine.png" alt="" class="hidden lg:block">
     </div>
 </x-generic-layout>
