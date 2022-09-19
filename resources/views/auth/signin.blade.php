@@ -3,7 +3,22 @@
         <div class="mt-10 max-w-[430px] w-full flex justify-center lg:justify-end">
             <div class="w-11/12">
                 <section>
-                    <img src="/storage/logo.png" alt="">
+                    <div class="flex">
+                        <img src="/storage/logo.png" alt="">
+                        <form method="post" action="/locale">
+                            @csrf
+                            <label for="language"></label>
+                            <select name="language" id="language" class="border-0 outline-none"
+                                onchange="this.form.submit()">
+                                <option value="en" {{ App::isLocale('en') ? 'selected' : '' }}>
+                                    {{ __('texts.english') }}
+                                </option>
+                                <option value="ka" {{ App::isLocale('ka') ? 'selected' : '' }}>
+                                    {{ __('texts.georgian') }}
+                                </option>
+                            </select>
+                        </form>
+                    </div>
                     <h1 class="font-black text-[#010414] text-2xl mt-6 lg:mt-14">{{ __('texts.welcome_back') }}</h1>
                     <h3 class="text-lg text-[#808189]">{{ __('texts.welcome_back_please_enter_your_details') }}</h3>
                 </section>
