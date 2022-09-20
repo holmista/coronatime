@@ -33,7 +33,7 @@ class VerifyEmail extends Mailable
 	public function build()
 	{
 		$confirmationUrl = $this->verificationUrl($this->user);
-		return $this->from('example@example.com', 'Example')
+		return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
 				->subject('Verify Email Address')
 				->view('emails.verify-email')
 				->with(['confirmationUrl'=>$confirmationUrl]);

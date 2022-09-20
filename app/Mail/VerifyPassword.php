@@ -36,7 +36,7 @@ class VerifyPassword extends Mailable
 	public function build()
 	{
 		$resetUrl = $this->verificationUrl($this->user);
-		return $this->from('example@example.com', 'Example')
+		return $this->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'))
 				->subject('Reset Password')
 				->view('emails.recover-password')
 				->with(['resetUrl'=>$resetUrl]);
