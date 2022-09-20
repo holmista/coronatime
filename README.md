@@ -1,64 +1,174 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+coronatime is a website which enables to monitor the latest covid statistics from different countries. The information it provides includes: new cases, recovered and deaths. You can sort the information in any order for better analysis.
 
-## About Laravel
+#
+### Table of Contents
+* [Prerequisites](#prerequisites)
+* [Tech Stack](#tech-stack)
+* [Getting Started](#getting-started)
+* [Migrations](#migration)
+* [Development](#development)
+* [Project Structure](#project-structure)
+* [Create Database](#create-database)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#
+### Prerequisites
 
-## Learning Laravel
+* *PHP@8.1 and up*
+* *MYSQL@8 and up*
+* *npm@8.15 and up*
+* *composer@2.4 and up*
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+#
+### Tech Stack
 
-## Laravel Sponsors
+* [Laravel@9.x](https://laravel.com/docs/6.x) - back-end framework
+* [Vite](https://vitejs.dev/) - is a bundler which makes an ease for a developer to start working on JS files and compile them with such simplicity...
+* [Spatie Translatable](https://github.com/spatie/laravel-translatable) - package for translation
+* [TailwindCss](https://tailwindcss.com/) - css framework
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+#
+### Getting Started
+1\. First of all you need to clone coronatime repository from github:
+```sh
+git clone https://github.com/RedberryInternship/tornike-buchukuri-coronatime.git
+```
 
-### Premium Partners
+2\. Go to the root of the folder:
+```sh
+cd tornike-buchukuri-coronatime/
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+3\. Next step requires you to run *composer install* in order to install all the dependencies.
+```sh
+composer install
+```
 
-## Contributing
+4\. after you have installed all the PHP dependencies, it's time to install all the JS dependencies:
+```sh
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+5\. Now we need to set our env file:
+```sh
+cp .env.example .env
+```
+And now you should provide **.env** file all the necessary environment variables(View Section [Create Database](#create-database)):
 
-## Code of Conduct
+#
+**MYSQL:**
+>DB_CONNECTION=mysql
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+>DB_HOST=127.0.0.1
 
-## Security Vulnerabilities
+>DB_PORT=3306
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+>DB_DATABASE=coronatime
 
-## License
+>DB_USERNAME=*****
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+>DB_PASSWORD=*****
+
+Now execute in the root of you project following:
+```sh
+  php artisan key:generate
+```
+Which generates auth key.
+
+after setting up **.env** file, execute:
+```sh
+php artisan config:cache
+```
+in order to cache environment variables.
+
+##### Now, you should be good to go!
+
+
+#
+### Migration
+if you've completed getting started section, then migrating database if fairly simple process, just execute:
+```sh
+php artisan migrate
+```
+
+#
+### Development
+
+You can run Laravel's built-in development server by executing:
+
+```sh
+  php artisan serve
+```
+
+when working on JS you may run:
+
+```sh
+  npm run dev
+```
+it builds your js files into executable scripts.
+
+run command below in terminal to fill database daily:
+```sh
+php artisan schedule:work
+```
+
+#
+### Project Structure
+
+```bash
+├─── app
+│   ├─── Console
+│   ├─── Exceptions
+│   ├─── Http
+│   ├─── Models
+│   ├─── Providers
+├─── bootstrap
+├─── config
+├─── database
+├─── lang
+├─── public
+├─── resources
+├─── routes
+├─── storage
+├─── tests
+- .env
+- artisan
+- composer.json
+- package.json
+- phpunit.xml
+```
+
+Project structure is fairly straitforward(at least for laravel developers)...
+
+For more information about project standards, take a look at these docs:
+* [Laravel](https://laravel.com/docs/9.x)
+
+
+
+[Database Design Diagram](https://drawsql.app/teams/oit/diagrams/coronatime)
+
+
+### Create Database
+
+1\. Firstly get into mysql prompt and provide password if neccessary:
+```sh
+sudo mysql
+```
+
+2\. After that create a new user, replace your_username and your_password with some other values:
+```sh
+CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';
+```
+
+3\. Grant permissions to newly created user:
+```sh
+GRANT ALL PRIVILEGES ON *.* TO 'your_username'@'localhost' WITH GRANT OPTION;
+```
+
+4\. Create a database:
+```sh
+CREATE DATABASE coronatime;
+```
