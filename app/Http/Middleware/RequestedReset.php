@@ -21,6 +21,6 @@ class RequestedReset
 		{
 			return $next($request);
 		}
-		return redirect()->route('password.request');
+		return redirect()->route('password.forgot');
 	}
 }

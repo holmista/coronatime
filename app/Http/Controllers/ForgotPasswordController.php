@@ -32,8 +32,8 @@ class ForgotPasswordController extends Controller
 			'created_at' => Carbon::now(),
 		]);
 		Mail::to($user)->queue(new VerifyPassword($token, $user));
-		$request->session()->put('requested_verification', true);
-		return redirect()->route('verification.notice');
+		$request->session()->put('requested_reset', true);
+		return redirect()->route('password.reset_sent');
 	}
 
 	public function resetPassword(ResetPasswordRequest $request): RedirectResponse
@@ -65,5 +65,10 @@ class ForgotPasswordController extends Controller
 	{
 		request()->session()->forget('password_reset_successful');
 		return view('auth.password-reset-successful');
+	}
+
+	public function emailSent()
+	{
+		return view('auth.confirmation-sent');
 	}
 }

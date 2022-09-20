@@ -14,13 +14,24 @@
         body {
             font-family: 'Inter';
         }
+
+        .img_wrapper {
+            margin-top: 150px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .img_wrapper {
+                margin-top: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div style="display: flex; justify-content: center; flex-direction: column; align-items: center">
-        <div style="margin-top: 150px;">
-            <img src="{{ $message->embed(public_path() . '/storage/emailConfirm.png') }}" alt="">
+        <div class="img_wrapper">
+            <img src="{{ $message->embed(public_path() . '/storage/emailConfirm.png') }}" alt=""
+                style="width: 100%; height: auto;">
         </div>
         <h1 style="font-size: 24px; font-weight: 900; text-align: center; color: black;">
             {{ __('texts.recover_password') }}
