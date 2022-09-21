@@ -47,4 +47,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::post('/locale', [LocaleController::class, 'change']);
-Route::view('/mf', 'emails.recover-password');
+Route::view('/mf', 'emails.verify-email');
