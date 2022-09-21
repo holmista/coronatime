@@ -17,7 +17,7 @@
                 </form>
             </div>
             <div class="hidden justify-center items-center sm:flex">
-                <p>Takeshi.K</p>
+                <p>{{ Auth::user()->username }}</p>
             </div>
             <div class="hidden justify-center items-center border-l-2 border-[#F6F6F7] sm:flex">
                 <form action="/signout">
