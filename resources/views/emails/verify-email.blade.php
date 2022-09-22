@@ -15,8 +15,26 @@
             font-family: 'Inter';
         }
 
+        .image {
+            margin: 0 auto;
+            display: block;
+        }
+
         .img_wrapper {
             margin-top: 150px;
+        }
+
+        .verify_email {
+            max-width: 392px;
+            width: 100%;
+            background-color: #0fba68;
+            border-radius: 8px;
+            max-height: 56px;
+            margin: 0 auto;
+        }
+
+        .button {
+            margin: 0 auto;
         }
 
         @media only screen and (max-width: 600px) {
@@ -28,24 +46,25 @@
 </head>
 
 <body>
-    <div style="display: flex; justify-content: center; flex-direction: column; align-items: center">
+    <div style="">
         <div class="img_wrapper">
-            <img src="{{ $message->embed(public_path() . '/storage/emailConfirm.png') }}" alt=""
-                style="width: 100%; height: auto;">
+            <img src="{{ $message->embed(public_path() . '/storage/emailConfirm.png') }}" alt="" class="image">
         </div>
+        <br>
         <h1 style="font-size: 24px; font-weight: 900; text-align: center; color: black;">
             {{ __('texts.confirmation_email') }}
         </h1>
+        <br>
         <p style="font-size: 18px; color:black; text-align: center;">
             {{ __('texts.click_this_button_to_verify_your_email') }}
         </p>
-        <a href="{{ $confirmationUrl }}"
-            style="max-width: 392px; width: 100%; background-color: rgb(15 186 104); border-radius: 8px; max-height: 56px;
-             display: flex; justify-content: center; align-items: center;">
-            <p
-                style="padding-top: 1rem; padding-bottom: 1rem; font-size: 16px; font-weight: 900;color: rgb(255 255 255); text-align: center; text-decoration: none;">
+        <a href="{{ $confirmationUrl }}" class="button">
+            <p class="verify_email"
+                style="padding-top: 1rem; padding-bottom: 1rem; font-size: 16px; font-weight: 900;
+            color: white; text-align: center; text-decoration: none; ">
                 {{ strtoupper(__('texts.verify_email')) }}
             </p>
         </a>
+        <br>
     </div>
 </body>
