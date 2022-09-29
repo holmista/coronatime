@@ -16,10 +16,10 @@ class ResetPasswordRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'id'                 => ['required', 'exists:users,id'],
-			'token'              => ['required', 'exists:password_resets,token'],
+			'id'                 => ['required'],
+			'token'              => ['required'],
 			'password'           => ['required', 'min:3'],
-			'repeat_password'    => ['same:password'],
+			'repeat_password'    => ['required', 'same:password'],
 		];
 	}
 
