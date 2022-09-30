@@ -40,7 +40,7 @@ Route::middleware(['guest'])->group(function () {
 	Route::view('/forgot-password', 'auth.forgot-password')->name('password.forgot');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/signout', [AuthController::class, 'signout'])->name('auth.signout');
 	Route::get('/', [StatisticsController::class, 'showWorldwide'])->name('home.index');
 	Route::get('/countries', [StatisticsController::class, 'index'])->name('country.index');
