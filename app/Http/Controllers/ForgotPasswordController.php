@@ -40,6 +40,10 @@ class ForgotPasswordController extends Controller
 	{
 		$attributes = $request->validated();
 		$user = User::findOrFail($request->id);
+		if (!DB::table('password_resets')->where('email', '=', $user->email)->select('token')->first())
+		{
+			return redirect()->route('password.forgot');
+		}
 		$token = DB::table('password_resets')->where('email', '=', $user->email)->select('token')->first()->token;
 		if ($token != $request->token)
 		{

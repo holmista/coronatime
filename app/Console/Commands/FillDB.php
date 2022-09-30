@@ -15,7 +15,7 @@ class FillDB extends Command
 	 *
 	 * @var string
 	 */
-	protected $signature = 'DB:fill';
+	protected $signature = 'DB:fill {base_url=https://devtest.ge}';
 
 	/**
 	 * The console command description.
@@ -31,19 +31,14 @@ class FillDB extends Command
 	 */
 	public function handle()
 	{
+		$base_url = $userId = $this->argument('base_url');
 		$this->info('Started filling Database');
 		$statistics = collect();
-		$numFailed = 0;
-		$countries = Http::get('https://devtest.ge/countries')->collect();
+		$countries = Http::get($base_url . '/countries')->collect();
 		foreach ($countries as $country)
 		{
-			if ($numFailed > 2)
-			{
-				$this->error('An error occurred: too many requests failed');
-				return false;
-			}
 			$countryCode = $country['code'];
-			$response = Http::post('https://devtest.ge/get-country-statistics', ['code'=>$countryCode]);
+			$response = Http::post($base_url . '/get-country-statistics', ['code'=>$countryCode]);
 			if ($response->ok())
 			{
 				$stats = $response->json();
@@ -58,7 +53,8 @@ class FillDB extends Command
 			}
 			else
 			{
-				$numFailed += 1;
+				$this->error('An error occurred: a request failed');
+				return 1;
 			}
 		}
 		$statistics->prepend([
@@ -77,7 +73,7 @@ class FillDB extends Command
 		catch(Exception $e)
 		{
 			$this->error('An error occurred: ' . $e->getMessage());
-			return false;
+			return 1;
 		}
 		$this->info('Database filled successfully!');
 	}

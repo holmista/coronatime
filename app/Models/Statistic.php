@@ -33,6 +33,8 @@ class Statistic extends Model
 
 	public $translatable = ['country'];
 
+	protected $guarded = [];
+
 	protected $casts = [
 		'country' => 'array',
 	];

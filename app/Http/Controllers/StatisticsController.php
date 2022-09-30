@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Statistic;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 class StatisticsController extends Controller
 {
 	public function index(): View
 	{
 		$query = Statistic::latest();
-		$search = ucfirst(strtolower(request('search')));
+		$search = strtolower(request('search'));
 		if (request('search'))
 		{
-			$query->where('country->en', 'like', '%' . $search . '%')
+			$query->where(DB::raw('lower(country->"$.en")'), 'like', '%' . $search . '%')
 			->orWhere('country->ka', 'like', '%' . $search . '%');
 		}
 		$data = $query->sort(request()->only('country', 'confirmed', 'deaths', 'recovered'))->get();
