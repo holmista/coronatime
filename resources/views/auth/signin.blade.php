@@ -1,6 +1,6 @@
 <x-generic-layout>
     <div class="flex justify-between h-screen">
-        <div class="mt-10 max-w-[430px] w-full flex justify-center lg:justify-end">
+        <div class="mt-10 max-w-[430px] w-full flex justify-center lg:justify-end ml-0 sm:ml-16">
             <div class="w-11/12">
                 <section>
                     <div class="flex">

@@ -30,11 +30,6 @@ class AuthController extends Controller
 		{
 			return redirect()->back()->withInput()->withErrors(['username'=>__('texts.invalid_email_or_username')]);
 		}
-		if (!$user->first()->email_verified_at)
-		{
-			$request->session()->put('requested_verification', true);
-			return redirect()->route('verification.notice');
-		}
 		$remember = array_key_exists('remember', $attributes) ? true : false;
 		unset($attributes['remember']);
 		if (Auth::attempt(['email'=>$user->first()->email, 'password'=>$attributes['password']], $remember))

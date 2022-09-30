@@ -21,7 +21,7 @@ use App\Http\Controllers\LocaleController;
 Route::middleware(['guest'])->group(function () {
 	Route::controller(AuthController::class)->group(function () {
 		Route::post('/signup', 'signup')->name('auth.signup')->name('auth.signup');
-		Route::post('/signin', 'signin')->name('auth.signin');
+		Route::post('/signin', 'signin')->middleware('verified')->name('auth.signin');
 	});
 	Route::controller(VerifyEmailController::class)->group(function () {
 		Route::get('/account-confirmed', 'accountConfirmed')->middleware('requestedVerification')->name('auth.view_account_confirmed');
