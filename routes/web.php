@@ -21,7 +21,7 @@ use App\Http\Controllers\LocaleController;
 Route::middleware(['guest'])->group(function () {
 	Route::controller(AuthController::class)->group(function () {
 		Route::post('/signup', 'signup')->name('auth.signup')->name('auth.signup');
-		Route::post('/signin', 'signin')->name('auth.signin');
+		Route::post('/signin', 'signin')->middleware('verified')->name('auth.signin');
 	});
 	Route::controller(VerifyEmailController::class)->group(function () {
 		Route::get('/account-confirmed', 'accountConfirmed')->middleware('requestedVerification')->name('auth.view_account_confirmed');
@@ -40,7 +40,7 @@ Route::middleware(['guest'])->group(function () {
 	Route::view('/forgot-password', 'auth.forgot-password')->name('password.forgot');
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('/signout', [AuthController::class, 'signout'])->name('auth.signout');
 	Route::get('/', [StatisticsController::class, 'showWorldwide'])->name('home.index');
 	Route::get('/countries', [StatisticsController::class, 'index'])->name('country.index');
